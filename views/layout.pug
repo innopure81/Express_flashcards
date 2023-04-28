@@ -1,0 +1,24 @@
+
+doctype html
+html(lang='en')
+    head
+        title Flash Cards 
+        link(rel='stylesheet', href='/static/stylesheets/style.css')
+    body
+        //- header
+        //- h1 Flash Cards 
+        include includes/header.pug
+        //- section#content
+        //-     h2 Welcome, student!
+        //- if name
+        //-     section.namecard
+        //-         .namecard-hello
+        //-         p.namecard-greeting Welcome, #{name}!
+        //-         form.namecard-exit(action='/goodbye', method='post')
+        //-             button(type='submit') Goodbye
+        //-                 img(src='/static/img/close.svg')
+        block main
+        //- footer
+        //-     p An app to help you study
+        //- include includes/footer.pug
+        
