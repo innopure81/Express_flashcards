@@ -5,11 +5,11 @@ block card
         .card(class=`card-${side}`) 
             .card-header
             h1.card-title= side 
-            #content
-                h2= text
-                if hint
-                    p.hint 
-                        i Hint: #{hint}
+            #content    
+                h2= text    
+                if hint 
+                    p.hint
+                        i hint:#{hint} 
             .card-flip-wrap
                 a(href= `${id}?side=${sideToShow}`)= sideToShowDisplay
                     img.card-flip(src='/static/img/flip.svg')

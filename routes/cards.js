@@ -32,10 +32,10 @@ router.get('/:id', async (req, res)=>{ //res.locals.prompt = "Who's beried in Gr
     if(side ==='question'){
         templateData.hint = hint;
         templateData.sideToShow = 'answer';
-        templateData.sideToShowDisplay = 'A';
+        templateData.sideToShowDisplay = 'Q';
     }else if(side==='answer'){
         templateData.sideToShow = 'question';
-        templateData.sideToShowDisplay = 'Q';
+        templateData.sideToShowDisplay = 'A';
     }
     res.render('card', templateData);// {prompt: cards[req.params.id].question, hint:cards[req.params.id].hint}
 });
