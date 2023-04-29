@@ -1,16 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const {data} = require('../data/flashcardData.json');//const data = require('../data/flashcardData.json').data;
-const {cards} = data;// const cards = data.cards;
+const Coding = require('../models/coding');
+//const {data} = require('../data/flashcardData.json');//const data = require('../data/flashcardData.json').data;
+//const {cards} = data;// const cards = data.cards;
 
-router.get('/', (req, res)=>{
-    const numOfCards = cards.length;
-    const randomId = Math.floor(Math.random()*numOfCards);
-    
-    res.redirect(`cards/${randomId}`);
+router.get('/', async (req, res)=>{
+    try {
+        const cards = await Coding.find();
+        const numOfCards = cards.length;
+        const randomId = Math.floor(Math.random()*numOfCards);
+        
+        res.redirect(`cards/${randomId}`);
+    } catch (error){
+            console.error(error);
+    }
 })
 
-router.get('/:id', (req, res)=>{ //res.locals.prompt = "Who's beried in Grant's tomb?";  
+router.get('/:id', async (req, res)=>{ //res.locals.prompt = "Who's beried in Grant's tomb?";  
     const {side} = req.query;
     const {id} = req.params;
     const name = req.cookies.username;
@@ -19,6 +25,7 @@ router.get('/:id', (req, res)=>{ //res.locals.prompt = "Who's beried in Grant's 
         return res.redirect(`/cards/${id}?side=question`) //Th return keyword will stop the rest of the functions below.
     }
 
+    const cards = await Coding.find();
     const text = cards[id][side];
     const {hint} = cards[id];
     const templateData = {id, text, name, side};
